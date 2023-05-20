@@ -21,3 +21,13 @@ jobs:
         username: dalex2307
         # Password or personal access token used to log against the Docker registry
         password: ${{ secrets.PASSWORD_DOCKERHUB }}
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v4.0.0
+      with:
+        context: .
+        # Path to the Dockerfile
+        file: ./Dockerfile
+        # List of metadata for an image
+        push: true
+        # List of tags
+        tags: dalex2307/go_ci:${{ github.ref_name }}
